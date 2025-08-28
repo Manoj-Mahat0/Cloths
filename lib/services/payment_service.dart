@@ -62,8 +62,14 @@ class PaymentService {
       debugPrint('UPI Payment Status: ${response.status}');
       debugPrint('UPI Raw Response: ${response.rawResponse}');
       final raw = (response.rawResponse ?? {}) as Map<String, dynamic>;
+      // Normalize status to simple strings: success | failure | submitted | error
+      final String normalizedStatus = response.status
+          .toString()
+          .split('.')
+          .last
+          .toLowerCase();
       return {
-        'status': response.status.toString(),
+        'status': normalizedStatus,
         'txnId': raw['txnId'] ?? raw['txnID'] ?? '',
         'approvalRefNo': raw['ApprovalRefNo'] ?? raw['approvalRefNo'] ?? '',
         'rawResponse': raw,
