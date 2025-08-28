@@ -203,7 +203,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                             SliverToBoxAdapter(child: _buildAddressSection()),
                             SliverList.separated(
                               itemCount: _items.length,
-                              separatorBuilder: (_, __) => const SizedBox(height: 16),
+                              separatorBuilder: (_, __) => const SizedBox(height: 12),
                               itemBuilder: (context, i) {
                                 final CartItem it = _items[i];
                                 return FadeTransition(
@@ -211,14 +211,14 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                                   child: SlideTransition(
                                     position: _slideAnimation,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                                      padding: const EdgeInsets.symmetric(horizontal: 16),
                                       child: _buildCartItem(it, i),
                                     ),
                                   ),
                                 );
                               },
                             ),
-                            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+                            const SliverToBoxAdapter(child: SizedBox(height: 12)),
                           ],
                         ),
             ),
@@ -232,21 +232,21 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(24, 20, 24, 16),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
       decoration: BoxDecoration(
         color: Colors.transparent,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha(10),
-            blurRadius: 20,
-            offset: const Offset(0, 4),
+            blurRadius: 12,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: const Color(0xFF0B8FAC).withAlpha(26),
               borderRadius: BorderRadius.circular(16),
@@ -254,10 +254,10 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
             child: const Icon(
               Icons.shopping_cart_outlined,
               color: Color(0xFF0B8FAC),
-              size: 24,
+              size: 20,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -265,7 +265,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 const Text(
                   'My Cart',
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF1E293B),
                     letterSpacing: -0.5,
@@ -274,7 +274,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 Text(
                   '${_items.length} items',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Colors.grey.shade600,
                     fontWeight: FontWeight.w500,
                   ),
@@ -290,7 +290,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 }
               },
               child: Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.red.withAlpha(26),
                   borderRadius: BorderRadius.circular(12),
@@ -298,7 +298,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 child: Icon(
                   Icons.delete_outline,
                   color: Colors.red.shade400,
-                  size: 20,
+                  size: 18,
                 ),
               ),
             ),
@@ -408,32 +408,32 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha((0.06 * 255).round()),
-              blurRadius: 20,
-              offset: const Offset(0, 8),
+              color: Colors.black.withAlpha((0.05 * 255).round()),
+              blurRadius: 12,
+              offset: const Offset(0, 6),
             ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               Container(
-                width: 80,
-                height: 80,
+                width: 64,
+                height: 64,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(12),
                   color: Colors.grey.shade100,
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(12),
                   child: _CartProductImage(product: product),
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -446,25 +446,30 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                             product.name,
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 18,
+                              fontSize: 16,
                               color: Color(0xFF1E293B),
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        const SizedBox(width: 12),
-                        Text(
-                          '₹${(product.priceCents / 100).toStringAsFixed(2)}',
-                          style: const TextStyle(
-                            color: Color(0xFF0B8FAC),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
+                        const SizedBox(width: 8),
+                        Flexible(
+                          flex: 0,
+                          child: Text(
+                            '₹${(product.priceCents / 100).toStringAsFixed(2)}',
+                            style: const TextStyle(
+                              color: Color(0xFF0B8FAC),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                            softWrap: false,
+                            overflow: TextOverflow.fade,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     Align(
                       alignment: Alignment.centerRight,
                       child: _QuantityControl(
@@ -485,14 +490,14 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
 
   Widget _buildAddressSection() {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+      margin: const EdgeInsets.fromLTRB(16, 12, 16, 12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha((0.04 * 255).round()),
-            blurRadius: 20,
+            blurRadius: 16,
             offset: const Offset(0, 4),
           ),
         ],
@@ -501,25 +506,25 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
         color: Colors.transparent,
         child: InkWell(
           onTap: _showAddressSelection,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             child: Row(
               children: [
                 Container(
-                  width: 56,
-                  height: 56,
+                  width: 48,
+                  height: 48,
                   decoration: BoxDecoration(
                     color: const Color(0xFF0B8FAC).withAlpha((0.1 * 255).round()),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
                     Icons.location_on_outlined,
                     color: Color(0xFF0B8FAC),
-                    size: 28,
+                    size: 22,
                   ),
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -528,15 +533,17 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                         _selectedAddress?.name ?? 'Select Delivery Address',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: _selectedAddress != null ? const Color(0xFF1E293B) : Colors.grey.shade600,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 4),
                       if (_selectedAddress != null) ...[
                         Text(
                           _selectedAddress!.address,
-                          style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+                          style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -545,9 +552,16 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                             padding: const EdgeInsets.only(top: 4),
                             child: Row(
                               children: [
-                                Icon(Icons.phone_outlined, size: 16, color: Colors.grey.shade500),
+                                Icon(Icons.phone_outlined, size: 14, color: Colors.grey.shade500),
                                 const SizedBox(width: 6),
-                                Text(_selectedAddress!.phone, style: TextStyle(color: Colors.grey.shade500, fontSize: 14)),
+                                Expanded(
+                                  child: Text(
+                                    _selectedAddress!.phone,
+                                    style: TextStyle(color: Colors.grey.shade500, fontSize: 13),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -558,9 +572,9 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(color: Colors.grey.shade100, borderRadius: BorderRadius.circular(12)),
-                  child: Icon(Icons.arrow_forward_ios_rounded, size: 16, color: Colors.grey.shade600),
+                  child: Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.grey.shade600),
                 ),
               ],
             ),
@@ -572,8 +586,8 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
 
   Widget _buildUserInfo() {
     return Container(
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: const Color(0xFF0B8FAC).withAlpha((0.05 * 255).round()),
         borderRadius: BorderRadius.circular(16),
@@ -583,14 +597,18 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
         children: [
           Row(
             children: [
-              const Icon(Icons.person_outline, size: 24, color: Color(0xFF0B8FAC)),
-              const SizedBox(width: 12),
-              Text(
-                _user?.name ?? 'Guest',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1E293B),
+              const Icon(Icons.person_outline, size: 20, color: Color(0xFF0B8FAC)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  _user?.name ?? 'Guest',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF1E293B),
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
@@ -599,11 +617,15 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
             const SizedBox(height: 8),
             Row(
               children: [
-                const Icon(Icons.email_outlined, size: 20, color: Color(0xFF0B8FAC)),
-                const SizedBox(width: 12),
-                Text(
-                  _user!.email,
-                  style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+                const Icon(Icons.email_outlined, size: 18, color: Color(0xFF0B8FAC)),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    _user!.email,
+                    style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -617,39 +639,39 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha((0.08 * 255).round()),
-            blurRadius: 30,
-            offset: const Offset(0, -8),
+            color: Colors.black.withAlpha((0.06 * 255).round()),
+            blurRadius: 20,
+            offset: const Offset(0, -6),
           ),
         ],
       ),
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildUserInfo(),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: const Color(0xFF0B8FAC).withAlpha((0.05 * 255).round()),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
             ),
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Text('Subtotal', style: TextStyle(fontSize: 16, color: Colors.grey.shade600, fontWeight: FontWeight.w500)),
-                Text('₹${(_subtotalCents / 100).toStringAsFixed(2)}', style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xFF1E293B))),
+                Text('Subtotal', style: TextStyle(fontSize: 14, color: Colors.grey.shade600, fontWeight: FontWeight.w500)),
+                Text('₹${(_subtotalCents / 100).toStringAsFixed(2)}', style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Color(0xFF1E293B))),
               ]),
-              const SizedBox(height: 12),
+              const SizedBox(height: 8),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                const Text('Total', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1E293B))),
+                const Text('Total', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1E293B))),
                 Text(
                   '₹${(_subtotalCents / 100).toStringAsFixed(2)}',
                   style: const TextStyle(
-                    fontSize: 20, 
+                    fontSize: 18, 
                     fontWeight: FontWeight.bold, 
                     color: Color(0xFF0B8FAC),
                   ),
@@ -657,24 +679,24 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
               ]),
             ]),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           SizedBox(
             width: double.infinity,
-            height: 56,
+            height: 48,
             child: ElevatedButton(
               onPressed: _canProceedToCheckout() ? (_checkingOut ? null : _proceedToCheckout) : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: _canProceedToCheckout() ? const Color(0xFF0B8FAC) : Colors.grey.shade300,
                 foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 elevation: 0,
               ),
               child: _checkingOut
-                  ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                  ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                   : Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-                      Icon(Icons.shopping_cart_checkout, size: 20),
-                      SizedBox(width: 12),
-                      Text('Check Out', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      Icon(Icons.shopping_cart_checkout, size: 18),
+                      SizedBox(width: 10),
+                      Text('Check Out', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                     ]),
             ),
           ),
@@ -760,10 +782,10 @@ class _QuantityControl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey.shade200),
       ),
       child: Row(
@@ -771,14 +793,14 @@ class _QuantityControl extends StatelessWidget {
         children: [
           _miniIconButton(icon: Icons.remove_rounded, onTap: onDecrement),
           Container(
-            width: 36,
+            width: 28,
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
               '$quantity',
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 16,
+                fontSize: 14,
                 color: Color(0xFF1E293B),
               ),
               maxLines: 1,
@@ -794,19 +816,19 @@ class _QuantityControl extends StatelessWidget {
 
   Widget _miniIconButton({required IconData icon, required VoidCallback? onTap}) {
     return SizedBox(
-      width: 36,
-      height: 36,
+      width: 28,
+      height: 28,
       child: Material(
         color: onTap != null 
             ? const Color(0xFF0B8FAC).withAlpha((0.08 * 255).round()) 
             : Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(8),
           child: Icon(
             icon,
-            size: 20,
+            size: 16,
             color: onTap != null ? const Color(0xFF0B8FAC) : Colors.grey.shade400,
           ),
         ),
@@ -827,8 +849,8 @@ class _CartProductImage extends StatelessWidget {
       final String url = imageUrl.startsWith('http') ? imageUrl : '${AuthService.baseUrl}$imageUrl';
       return Image.network(
         url,
-        width: 80,
-        height: 80,
+        width: 64,
+        height: 64,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) => _buildPlaceholder(),
       );
@@ -838,16 +860,16 @@ class _CartProductImage extends StatelessWidget {
 
   Widget _buildPlaceholder() {
     return Container(
-      width: 80,
-      height: 80,
+      width: 64,
+      height: 64,
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Icon(
         Icons.image_outlined,
         color: Colors.grey.shade400,
-        size: 32,
+        size: 24,
       ),
     );
   }
