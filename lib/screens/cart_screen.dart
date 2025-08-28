@@ -222,11 +222,18 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                           ],
                         ),
             ),
-            if (_items.isNotEmpty)
-              _buildCheckoutSection(),
           ],
         ),
       ),
+      bottomNavigationBar: _items.isNotEmpty
+          ? SafeArea(
+              minimum: const EdgeInsets.only(bottom: 10),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _buildCheckoutSection(),
+              ),
+            )
+          : null,
     );
   }
 
