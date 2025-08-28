@@ -1,0 +1,11 @@
+-keep class io.flutter.** { *; }
+-keep class io.flutter.embedding.** { *; }
+-keep class com.google.gson.** { *; }
+-keep class okhttp3.** { *; }
+-keep class okio.** { *; }
+-keep class retrofit2.** { *; }
+-keepclassmembers enum * { *; }
+## Keep Google Play Core (deferred components) classes referenced by Flutter
+-dontwarn com.google.android.play.core.**
+-keep class com.google.android.play.core.** { *; }
+-keep interface com.google.android.play.core.** { *; }
